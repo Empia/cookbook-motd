@@ -18,8 +18,8 @@
 # limitations under the License.
 #
 
-template "/etc/motd.tail" do
-  source "motd.tail.erb"
+template "/etc/motd" do
+  source "motd.erb"
   group  "root"
   owner  "root"
   mode   00644

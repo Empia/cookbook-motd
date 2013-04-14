@@ -1,32 +1,32 @@
 Description
 ===========
 
-Updates motd.tail with Chef Roles
+Updates motd with Chef Roles
 
 Requirements
 ============
 
-Needs to be used on a system that utilizes /etc/motd.tail, e.g. Ubuntu.
+Needs to be used on a system that utilizes /etc/motd, e.g. Ubuntu.
 
 Attributes
 ==========
 
-* `node['motd-tail']['additional_text']` - Additional text to add to the end
-  of the motd.tail (e.g. unauthorized access banner).
+* `node['motd']['additional_text']` - Additional text to add to the end
+  of the motd (e.g. unauthorized access banner).
 
 Usage
 =====
 
 ```json
 "run_list": [
-    "recipe[motd-tail]"
+    "recipe[motd]"
 ]
 ```
 
 default
 ----
 
-Updates motd.tail with useful node data
+Updates motd with useful node data
 
 Examples
 --------
@@ -43,7 +43,7 @@ For example,
     rsyslog_server
     ***
 
-    Additional text here when `node['motd-tail']['additional_text']` present.
+    Additional text here when `node['motd']['additional_text']` present.
 
 Testing
 =====
@@ -53,8 +53,8 @@ This cookbook is using [ChefSpec](https://github.com/acrmp/chefspec) for testing
     % cd $repo
     % bundle
     % librarian-chef install
-    % ln -s ../ cookbooks/motd-tail
-    % rspec cookbooks/motd-tail
+    % ln -s ../ cookbooks/motd
+    % rspec cookbooks/motd
 
 License and Author
 ==================

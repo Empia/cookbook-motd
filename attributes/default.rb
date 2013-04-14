@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default['motd-tail']['additional_text'] = nil
+default['motd']['additional_text'] = nil

@@ -1,9 +1,9 @@
 require "chefspec"
 
-describe "motd-tail::default" do
+describe "motd::default" do
   before do
-    @file = "/etc/motd.tail"
-    @chef_run = ChefSpec::ChefRunner.new.converge "motd-tail::default"
+    @file = "/etc/motd"
+    @chef_run = ChefSpec::ChefRunner.new.converge "motd::default"
   end
 
   it "has proper owner" do
@@ -38,7 +38,7 @@ describe "motd-tail::default" do
 
   it "has environment" do
     chef_run = ChefSpec::ChefRunner.new
-    node = chef_run.converge("motd-tail::default").node
+    node = chef_run.converge("motd::default").node
     node.stub(:chef_environment).and_return "env"
 
     chef_run.should create_file_with_content @file,
@@ -53,7 +53,7 @@ describe "motd-tail::default" do
 
   it "has roles" do
     chef_run = ChefSpec::ChefRunner.new
-    node = chef_run.converge("motd-tail::default").node
+    node = chef_run.converge("motd::default").node
     node.roles << "role1"
     node.roles << "role2"
 
@@ -65,7 +65,7 @@ describe "motd-tail::default" do
 
   it "has tags" do
     chef_run = ChefSpec::ChefRunner.new
-    node = chef_run.converge("motd-tail::default").node
+    node = chef_run.converge("motd::default").node
     node.tags << "tag1"
     node.tags << "tag2"
     chef_run.should create_file_with_content @file,
@@ -78,9 +78,9 @@ describe "motd-tail::default" do
 
   it "has additional text" do
     chef_run = ChefSpec::ChefRunner.new do |n|
-      n.set['motd-tail'] = {}
-      n.set['motd-tail']['additional_text'] = "this is some additional text"
-    end.converge "motd-tail::default"
+      n.set['motd'] = {}
+      n.set['motd']['additional_text'] = "this is some additional text"
+    end.converge "motd::default"
     chef_run.should create_file_with_content @file,
       "this is some additional text"
   end
